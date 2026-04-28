@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Secrets / tokens
+.env
+*.env
+
+# InfraBot data
+data/sessions.json
+
+# Backups
+*.backup
+output/*/backups/
+
+# OS
+.DS_Store
+Thumbs.db

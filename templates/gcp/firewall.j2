@@ -1,0 +1,19 @@
+resource "google_compute_firewall" "{{ resource_name }}" {
+  name      = "{{ resource_name }}"
+  network   = "{{ network | default('default') }}"
+  direction = "{{ direction }}"
+  priority  = {{ priority | default(1000) }}
+
+{% if direction == "INGRESS" %}
+  source_ranges = ["{{ source_ranges }}"]
+{% else %}
+  destination_ranges = ["{{ dest_ranges }}"]
+{% endif %}
+
+  allow {
+    protocol = "{{ protocol }}"
+{% if protocol != "icmp" %}
+    ports    = ["{{ port }}"]
+{% endif %}
+  }
+}

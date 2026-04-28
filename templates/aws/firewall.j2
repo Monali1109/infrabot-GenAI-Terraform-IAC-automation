@@ -1,0 +1,13 @@
+resource "aws_security_group_rule" "{{ resource_name }}" {
+  type              = "{{ direction }}"
+  from_port         = {{ port }}
+  to_port           = {{ port }}
+  protocol          = "{{ protocol }}"
+  security_group_id = "{{ security_group_id }}"
+
+{% if direction == "ingress" %}
+  cidr_blocks = ["{{ source_ip }}"]
+{% else %}
+  cidr_blocks = ["{{ dest_ip }}"]
+{% endif %}
+}
