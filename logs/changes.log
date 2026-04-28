@@ -1,0 +1,2 @@
+[2026-04-28 15:36:53] engineer=monali | provider=aws | resource_type=aws_instance | resource_name=sevr1 | file=C:\Users\mopatil\Desktop\terraform-infra-AI\infra-bot\output\aws\main.tf
+[2026-04-28 15:54:40] engineer=patilmonali | provider=aws | resource_type=aws_instance | resource_name=webservrtst1 | file=C:\Users\mopatil\Desktop\terraform-infra-AI\infra-bot\output\aws\main.tf
