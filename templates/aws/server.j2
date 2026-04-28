@@ -1,0 +1,13 @@
+resource "aws_instance" "{{ hostname }}" {
+  ami           = "{{ ami }}"
+  instance_type = "{{ instance_type }}"
+
+  credit_specification {
+    cpu_credits = "{{ cpu_credits | default('standard') }}"
+  }
+
+  tags = {
+    Name = "{{ hostname }}"
+    OS   = "{{ os }}"
+  }
+}

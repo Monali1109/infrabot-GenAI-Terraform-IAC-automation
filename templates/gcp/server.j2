@@ -1,0 +1,21 @@
+resource "google_compute_instance" "{{ hostname }}" {
+  name         = "{{ hostname }}"
+  machine_type = "{{ machine_type }}"
+  zone         = "{{ zone }}"
+
+  boot_disk {
+    initialize_params {
+      image = "{{ boot_disk_image }}"
+    }
+  }
+
+  network_interface {
+    network = "{{ network | default('default') }}"
+
+    access_config {}
+  }
+
+  labels = {
+    os = "{{ os | lower | replace(' ', '-') }}"
+  }
+}
