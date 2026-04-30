@@ -1,43 +1,43 @@
-# ── Compute: gmojzgf6v (test) ─────────────────────────────────
-variable "gmojzgf6v_instance_type" {
+# ── Compute: gmol9tzxv (test) ─────────────────────────────────
+variable "gmol9tzxv_instance_type" {
   description = "EC2 instance type"
   type        = string
   default     = "t3.medium"
 }
-variable "gmojzgf6v_count" {
+variable "gmol9tzxv_count" {
   description = "Number of instances"
   type        = number
   default     = 1
 }
-variable "gmojzgf6v_volume_size" {
+variable "gmol9tzxv_volume_size" {
   description = "Root volume size GB"
   type        = number
-  default     = 23
+  default     = 50
 }
-variable "gmojzgf6v_vpc_id" {
+variable "gmol9tzxv_vpc_id" {
   description = "VPC ID"
   type        = string
-  default     = "VPC-5428405"
+  default     = "vpc-xxxxxxxx"
 }
-variable "gmojzgf6v_subnet_ids" {
+variable "gmol9tzxv_subnet_ids" {
   description = "List of subnet IDs"
   type        = list(string)
   default     = ["subnet-xxxxxxxx"]
 }
 
-data "aws_ami" "gmojzgf6v_ami" {
+data "aws_ami" "gmol9tzxv_ami" {
   most_recent = true
   owners      = ["amazon"]
-  filter { name = "name"; values = ["Windows_Server-2022-English-Full-Base-*"] }
+  filter { name = "name"; values = ["al2023-ami-*-x86_64"] }
   filter { name = "virtualization-type"; values = ["hvm"] }
 }
 
-resource "aws_instance" "gmojzgf6v" {
-  count                  = var.gmojzgf6v_count
-  ami                    = data.aws_ami.gmojzgf6v_ami.id
-  instance_type          = var.gmojzgf6v_instance_type
-  subnet_id              = var.gmojzgf6v_subnet_ids[count.index % length(var.gmojzgf6v_subnet_ids)]
-  vpc_security_group_ids = [aws_security_group.gmojzgf6v_sg.id]
+resource "aws_instance" "gmol9tzxv" {
+  count                  = var.gmol9tzxv_count
+  ami                    = data.aws_ami.gmol9tzxv_ami.id
+  instance_type          = var.gmol9tzxv_instance_type
+  subnet_id              = var.gmol9tzxv_subnet_ids[count.index % length(var.gmol9tzxv_subnet_ids)]
+  vpc_security_group_ids = [aws_security_group.gmol9tzxv_sg.id]
 
   metadata_options {
     http_tokens   = "required"
@@ -45,23 +45,23 @@ resource "aws_instance" "gmojzgf6v" {
   }
   root_block_device {
     volume_type           = "gp3"
-    volume_size           = var.gmojzgf6v_volume_size
+    volume_size           = var.gmol9tzxv_volume_size
     encrypted             = true
     delete_on_termination = true
   }
-  tags = { Name = "webdv01-${count.index}", Environment = "test", Generation = "gmojzgf6v" }
+  tags = { Name = "RD01-${count.index}", Environment = "test", Generation = "gmol9tzxv" }
 }
 
-resource "aws_security_group" "gmojzgf6v_sg" {
-  name        = "webdv01-gmojzgf6v-sg"
-  description = "Auto-created SG for gmojzgf6v"
-  vpc_id      = var.gmojzgf6v_vpc_id
+resource "aws_security_group" "gmol9tzxv_sg" {
+  name        = "RD01-gmol9tzxv-sg"
+  description = "Auto-created SG for gmol9tzxv"
+  vpc_id      = var.gmol9tzxv_vpc_id
   egress {
     from_port   = 0; to_port = 0; protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = { Name = "webdv01-gmojzgf6v-sg" }
+  tags = { Name = "RD01-gmol9tzxv-sg" }
 }
 
-output "gmojzgf6v_ids"        { value = aws_instance.gmojzgf6v[*].id }
-output "gmojzgf6v_public_ips" { value = aws_instance.gmojzgf6v[*].public_ip }
+output "gmol9tzxv_ids"        { value = aws_instance.gmol9tzxv[*].id }
+output "gmol9tzxv_public_ips" { value = aws_instance.gmol9tzxv[*].public_ip }
