@@ -1,4 +1,4 @@
-# ââ IAM: gmolagv59 (dev) ââ Who: auto-SA  |  Access: project-wide
+# Ã¢ÂÂÃ¢ÂÂ IAM: gmolagv59 (dev) Ã¢ÂÂÃ¢ÂÂ Who: auto-SA  |  Access: project-wide
 resource "google_service_account" "gmolagv59_sa" {
   account_id   = "${var.project_name}-gmolagv59-sa"
   display_name = "gmolagv59 SA (dev)"
