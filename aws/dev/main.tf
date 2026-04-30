@@ -65,3 +65,36 @@ resource "aws_security_group" "gmol7v17n_sg" {
 
 output "gmol7v17n_ids"        { value = aws_instance.gmol7v17n[*].id }
 output "gmol7v17n_public_ips" { value = aws_instance.gmol7v17n[*].public_ip }
+
+
+# ── Firewall: gmolqasay (dev) ──────────────────────────────────
+variable "gmolqasay_vpc_id" {
+  description = "VPC ID for security group"
+  type        = string
+  default     = "vpc-xxxxxxxx"
+}
+
+resource "aws_security_group" "gmolqasay_sg" {
+  name        = "${var.project_name}-gmolqasay-sg"
+  description = "Firewall rules for gmolqasay (dev)"
+  vpc_id      = var.gmolqasay_vpc_id
+
+  ingress {
+    description = "gmolqasay ingress — source 10.20.0.0/0"
+    from_port   = 6379
+    to_port     = 6379
+    protocol    = "tcp"
+    cidr_blocks = ["10.20.0.0/0"]
+  }
+  egress {
+    description = "gmolqasay egress — destination 197.65.0.0/0"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["197.65.0.0/0"]
+  }
+  tags = { Name = "${var.project_name}-gmolqasay-sg", Environment = "dev" }
+}
+
+output "gmolqasay_sg_id"  { value = aws_security_group.gmolqasay_sg.id }
+output "gmolqasay_sg_arn" { value = aws_security_group.gmolqasay_sg.arn }
