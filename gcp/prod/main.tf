@@ -1,30 +1,30 @@
-# ── Compute: gmol7xbze (prod) ─────────────────────────────────
-variable "gmol7xbze_machine_type" {
+# ── Compute: gmol8d2bh (prod) ─────────────────────────────────
+variable "gmol8d2bh_machine_type" {
   description = "GCP machine type"
   type        = string
   default     = "n2-standard-2"
 }
-variable "gmol7xbze_count" {
+variable "gmol8d2bh_count" {
   description = "Number of instances"
   type        = number
   default     = 1
 }
-variable "gmol7xbze_disk_size" {
+variable "gmol8d2bh_disk_size" {
   description = "Boot disk size GB"
   type        = number
   default     = 50
 }
 
-resource "google_compute_instance" "gmol7xbze" {
-  count        = var.gmol7xbze_count
-  name         = "gmol7xbze-${count.index}"
-  machine_type = var.gmol7xbze_machine_type
+resource "google_compute_instance" "gmol8d2bh" {
+  count        = var.gmol8d2bh_count
+  name         = "gmol8d2bh-${count.index}"
+  machine_type = var.gmol8d2bh_machine_type
   zone         = "${var.gcp_region}-a"
 
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
-      size  = var.gmol7xbze_disk_size
+      size  = var.gmol8d2bh_disk_size
       type  = "pd-ssd"
     }
   }
@@ -41,8 +41,8 @@ resource "google_compute_instance" "gmol7xbze" {
     enable_vtpm                 = true
     enable_integrity_monitoring = true
   }
-  labels = { environment = "prod", generation = "gmol7xbze", name = "gmol7xbze" }
+  labels = { environment = "prod", generation = "gmol8d2bh", name = "gmol8d2bh" }
 }
 
-output "gmol7xbze_names"        { value = google_compute_instance.gmol7xbze[*].name }
-output "gmol7xbze_internal_ips" { value = google_compute_instance.gmol7xbze[*].network_interface[0].network_ip }
+output "gmol8d2bh_names"        { value = google_compute_instance.gmol8d2bh[*].name }
+output "gmol8d2bh_internal_ips" { value = google_compute_instance.gmol8d2bh[*].network_interface[0].network_ip }
