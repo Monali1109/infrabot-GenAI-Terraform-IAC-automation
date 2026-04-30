@@ -1,4 +1,4 @@
-# ── prod environment ─────────────────────────────────────────
+# ââ prod environment âââââââââââââââââââââââââââââââââââââââââ
 azure_subscription_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 azure_location        = "eastus"
 tf_state_rg           = "tfstate-rg"
@@ -7,7 +7,7 @@ resource_group_name   = "myproject-prod-rg"
 project_name          = "myproject"
 ssh_public_key        = "ssh-rsa AAAA..."
 
-# ── Generation gmol9ls0a ──
+# ââ Generation gmol9ls0a ââ
 gmol9ls0a_vm_size = "Standard_D2s_v3"
 gmol9ls0a_image_publisher = "RedHat"
 gmol9ls0a_os_disk_size = "64"
