@@ -65,3 +65,35 @@ resource "aws_security_group" "gmojzgf6v_sg" {
 
 output "gmojzgf6v_ids"        { value = aws_instance.gmojzgf6v[*].id }
 output "gmojzgf6v_public_ips" { value = aws_instance.gmojzgf6v[*].public_ip }
+
+# ── Firewall: gmolqk2up (prod) ──────────────────────────────────
+variable "gmolqk2up_vpc_id" {
+  description = "VPC ID for security group"
+  type        = string
+  default     = "vpc-xxxxxxxx"
+}
+
+resource "aws_security_group" "gmolqk2up_sg" {
+  name        = "${var.project_name}-gmolqk2up-sg"
+  description = "Firewall rules for gmolqk2up (prod)"
+  vpc_id      = var.gmolqk2up_vpc_id
+
+  ingress {
+    description = "gmolqk2up ingress — source 10.10.0.0/0"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["10.10.0.0/0"]
+  }
+  egress {
+    description = "gmolqk2up egress — destination 20.10.0.0/0"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["20.10.0.0/0"]
+  }
+  tags = { Name = "${var.project_name}-gmolqk2up-sg", Environment = "prod" }
+}
+
+output "gmolqk2up_sg_id"  { value = aws_security_group.gmolqk2up_sg.id }
+output "gmolqk2up_sg_arn" { value = aws_security_group.gmolqk2up_sg.arn }
