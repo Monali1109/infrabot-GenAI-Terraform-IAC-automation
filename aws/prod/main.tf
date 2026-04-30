@@ -65,3 +65,35 @@ resource "aws_security_group" "gmojzgf6v_sg" {
 
 output "gmojzgf6v_ids"        { value = aws_instance.gmojzgf6v[*].id }
 output "gmojzgf6v_public_ips" { value = aws_instance.gmojzgf6v[*].public_ip }
+
+# ── Firewall: gmolbi3nj (prod) ──────────────────────────────────
+variable "gmolbi3nj_vpc_id" {
+  description = "VPC ID for security group"
+  type        = string
+  default     = "vpc-xxxxxxxx"
+}
+
+resource "aws_security_group" "gmolbi3nj_sg" {
+  name        = "${var.project_name}-gmolbi3nj-sg"
+  description = "Firewall rules for gmolbi3nj (prod)"
+  vpc_id      = var.gmolbi3nj_vpc_id
+
+  ingress {
+    description = "gmolbi3nj ingress — source 10.0.01.0/10"
+    from_port   = 9000
+    to_port     = 9000
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.01.0/10"]
+  }
+  egress {
+    description = "gmolbi3nj egress — destination 198.162.0.0/30"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["198.162.0.0/30"]
+  }
+  tags = { Name = "${var.project_name}-gmolbi3nj-sg", Environment = "prod" }
+}
+
+output "gmolbi3nj_sg_id"  { value = aws_security_group.gmolbi3nj_sg.id }
+output "gmolbi3nj_sg_arn" { value = aws_security_group.gmolbi3nj_sg.arn }
