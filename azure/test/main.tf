@@ -1,46 +1,46 @@
-# ── Compute: gmol8tadv (test) ─────────────────────────────────
-variable "gmol8tadv_vm_size" {
+# ── Compute: gmol9tzxv (test) ─────────────────────────────────
+variable "gmol9tzxv_vm_size" {
   description = "Azure VM size"
   type        = string
   default     = "Standard_D2s_v3"
 }
-variable "gmol8tadv_count" {
+variable "gmol9tzxv_count" {
   description = "Number of VMs"
   type        = number
   default     = 1
 }
-variable "gmol8tadv_os_disk_size" {
+variable "gmol9tzxv_os_disk_size" {
   description = "OS disk size GB"
   type        = number
-  default     = 128
+  default     = 64
 }
 
-data "azurerm_subnet" "gmol8tadv_subnet" {
+data "azurerm_subnet" "gmol9tzxv_subnet" {
   name                 = "${var.subnet_name}"
   virtual_network_name = "${var.vnet_name}"
   resource_group_name  = var.resource_group_name
 }
 
-resource "azurerm_network_interface" "gmol8tadv_nic" {
-  count               = var.gmol8tadv_count
-  name                = "gmol8tadv-gmol8tadv-nic-${count.index}"
+resource "azurerm_network_interface" "gmol9tzxv_nic" {
+  count               = var.gmol9tzxv_count
+  name                = "RD02-gmol9tzxv-nic-${count.index}"
   resource_group_name = var.resource_group_name
   location            = var.azure_location
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = data.azurerm_subnet.gmol8tadv_subnet.id
+    subnet_id                     = data.azurerm_subnet.gmol9tzxv_subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
-resource "azurerm_linux_virtual_machine" "gmol8tadv" {
-  count               = var.gmol8tadv_count
-  name                = "gmol8tadv-${count.index}"
+resource "azurerm_linux_virtual_machine" "gmol9tzxv" {
+  count               = var.gmol9tzxv_count
+  name                = "RD02-${count.index}"
   resource_group_name = var.resource_group_name
   location            = var.azure_location
-  size                = var.gmol8tadv_vm_size
+  size                = var.gmol9tzxv_vm_size
   admin_username      = "azureadmin"
-  network_interface_ids = [azurerm_network_interface.gmol8tadv_nic[count.index].id]
+  network_interface_ids = [azurerm_network_interface.gmol9tzxv_nic[count.index].id]
 
   admin_ssh_key {
     username   = "azureadmin"
@@ -49,7 +49,7 @@ resource "azurerm_linux_virtual_machine" "gmol8tadv" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
-    disk_size_gb         = var.gmol8tadv_os_disk_size
+    disk_size_gb         = var.gmol9tzxv_os_disk_size
   }
   source_image_reference {
     publisher = "Canonical"
@@ -58,8 +58,8 @@ resource "azurerm_linux_virtual_machine" "gmol8tadv" {
     version   = "latest"
   }
   identity { type = "SystemAssigned" }
-  tags = { environment = "test", generation = "gmol8tadv", name = "gmol8tadv" }
+  tags = { environment = "test", generation = "gmol9tzxv", name = "RD02" }
 }
 
-output "gmol8tadv_ids"         { value = azurerm_linux_virtual_machine.gmol8tadv[*].id }
-output "gmol8tadv_private_ips" { value = azurerm_network_interface.gmol8tadv_nic[*].private_ip_address }
+output "gmol9tzxv_ids"         { value = azurerm_linux_virtual_machine.gmol9tzxv[*].id }
+output "gmol9tzxv_private_ips" { value = azurerm_network_interface.gmol9tzxv_nic[*].private_ip_address }
