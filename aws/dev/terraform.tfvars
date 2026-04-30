@@ -3,7 +3,7 @@ aws_region        = "us-east-1"
 tf_state_bucket   = "my-tfstate-dev"
 project_name      = "myproject"
 
-# ── Generation gmol7v17n ──
-gmol7v17n_instance_type = "t3.medium"
-gmol7v17n_ami_os = "Amazon Linux 2023"
-gmol7v17n_volume_size = "50"
+# ── Generation gmol9gebu ──
+gmol9gebu_instance_type = "t3.medium"
+gmol9gebu_ami_os = "Amazon Linux 2023"
+gmol9gebu_volume_size = "50"
