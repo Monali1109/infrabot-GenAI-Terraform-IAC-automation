@@ -1,0 +1,5 @@
+resource "azurerm_role_assignment" "{{ resource_name }}" {
+  scope                = "{{ scope }}"
+  role_definition_name = "{{ 'SQL DB Contributor' if access_type == 'sql' else 'Virtual Machine Contributor' }}"
+  principal_id         = "{{ principal_id }}"
+}

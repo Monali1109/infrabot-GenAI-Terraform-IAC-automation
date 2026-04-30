@@ -1,0 +1,5 @@
+resource "google_project_iam_member" "{{ resource_name }}" {
+  project = "{{ project_id }}"
+  role    = "roles/{{ 'cloudsql.client' if access_type == 'cloudsql' else 'compute.instanceAdmin.v1' }}"
+  member  = "{{ member }}"
+}

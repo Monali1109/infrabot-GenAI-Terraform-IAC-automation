@@ -1,0 +1,34 @@
+resource "aws_iam_user_policy" "{{ resource_name }}" {
+  name = "{{ resource_name }}"
+  user = "{{ iam_user }}"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+{% if access_type == "rds" %}
+      {
+        Sid    = "AllowRDSAccess"
+        Effect = "Allow"
+        Action = [
+          "rds:DescribeDBInstances",
+          "rds:Connect",
+          "rds:DescribeDBClusters"
+        ]
+        Resource = "arn:aws:rds:{{ region }}:{{ account_id }}:db:{{ db_identifier }}"
+      }
+{% else %}
+      {
+        Sid    = "AllowEC2Access"
+        Effect = "Allow"
+        Action = [
+          "ec2:DescribeInstances",
+          "ec2:StartInstances",
+          "ec2:StopInstances",
+          "ec2:RebootInstances"
+        ]
+        Resource = "arn:aws:ec2:{{ region }}:{{ account_id }}:instance/{{ instance_id }}"
+      }
+{% endif %}
+    ]
+  })
+}

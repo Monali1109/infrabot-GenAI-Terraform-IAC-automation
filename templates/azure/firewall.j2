@@ -1,0 +1,13 @@
+resource "azurerm_network_security_rule" "{{ resource_name }}" {
+  name                        = "{{ resource_name }}"
+  priority                    = {{ priority }}
+  direction                   = "{{ direction }}"
+  access                      = "Allow"
+  protocol                    = "{{ protocol }}"
+  source_port_range           = "*"
+  destination_port_range      = "{{ port }}"
+  source_address_prefix       = "{{ source_ip }}"
+  destination_address_prefix  = "{{ dest_ip }}"
+  resource_group_name         = "{{ resource_group_name }}"
+  network_security_group_name = "{{ nsg_name }}"
+}
