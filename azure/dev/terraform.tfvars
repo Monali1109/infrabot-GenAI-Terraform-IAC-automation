@@ -7,7 +7,8 @@ resource_group_name   = "myproject-dev-rg"
 project_name          = "myproject"
 ssh_public_key        = "ssh-rsa AAAA..."
 
-# ── Generation gmol9gebu ──
-gmol9gebu_vm_size = "Standard_D2s_v3"
-gmol9gebu_image_publisher = "Canonical"
-gmol9gebu_os_disk_size = "128"
+# ── Generation gmol9ls0a ──
+gmol9ls0a_vm_size = "Standard_D2s_v3"
+gmol9ls0a_image_publisher = "RedHat"
+gmol9ls0a_os_disk_size = "64"
+gmol9ls0a_server_name = "myserverL2"
