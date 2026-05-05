@@ -1,6 +1,8 @@
-# AWS region & availability zone
-region            = "us-east-1"
+region = "us-east-1"
 
-# Replace with actual IDs from your AWS account after virtual-network is deployed
-subnet_id         = "subnet-REPLACE_WITH_APP_SUBNET_ID"
-key_name          = "REPLACE_WITH_YOUR_EC2_KEY_PAIR_NAME"
+# After running virtual-network, find subnet ID in AWS Console:
+#   EC2 -> Subnets -> search Name = "SUBNET_AWS_APP_TEST-01"
+subnet_id = "subnet-REPLACE_AFTER_VPC_DEPLOY"
+
+# EC2 -> Key Pairs -> use existing or create one
+key_name  = "REPLACE_WITH_YOUR_KEY_PAIR_NAME"
