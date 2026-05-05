@@ -1,2 +1,2 @@
 region  = "us-central1"
-project = "REPLACE_WITH_YOUR_GCP_PROJECT_ID"
+project = "REPLACE_WITH_GCP_PROJECT_ID"
