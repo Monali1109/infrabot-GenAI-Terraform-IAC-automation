@@ -1,5 +1,6 @@
 location            = "East US"
 resource_group_name = "RG-AZURE-PROD-01"
 
-# Use a secrets manager in production — do NOT commit real passwords
-db_password         = "REPLACE_WITH_SECURE_PASSWORD_Min8Chars!"
+# Server already defined as: psql-azure-prod-01
+# IMPORTANT: Do not commit real passwords — use Azure Key Vault in production
+db_password         = "REPLACE_WITH_SECURE_Password1!"
