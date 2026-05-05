@@ -1,7 +1,8 @@
-region     = "us-central1"
+region  = "us-central1"
 
-# Get network_id from virtual-network module output
-network_id = "REPLACE_WITH_VPC_NETWORK_SELF_LINK"
+# GCP uses VPC self_link — get it with:
+#   gcloud compute networks describe vpc-gcp-prod-01 --format='value(selfLink)'
+network_id = "projects/REPLACE_PROJECT_ID/global/networks/vpc-gcp-prod-01"
 
-# Use a secrets manager in production — do NOT commit real passwords
+# IMPORTANT: Do not commit real passwords — use Secret Manager in production
 db_password = "REPLACE_WITH_SECURE_PASSWORD"
