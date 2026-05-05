@@ -1,3 +1,4 @@
-# Get vpc_id from: terraform output -state=../virtual-network/terraform.tfstate
-vpc_id     = "vpc-REPLACE_WITH_VPC_ID"
+# After running virtual-network, find VPC ID in AWS Console:
+#   VPC -> Your VPCs -> search Name = "VPC_AWS_PROD-01"
+vpc_id     = "vpc-REPLACE_AFTER_VPC_DEPLOY"
 admin_cidr = "10.0.0.0/8"
