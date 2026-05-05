@@ -1,0 +1,26 @@
+# ── prod environment ─────────────────────────────────────────
+gcp_project_id  = "my-project-prod"
+gcp_region      = "us-central1"
+tf_state_bucket = "my-tfstate-prod"
+project_name    = "myproject"
+
+# ── Generation gmosv58v6 ──
+gmosv58v6_region = "us-east1"
+gmosv58v6_machine_type = "n4-standard-8"
+gmosv58v6_image = "windows-cloud/windows-2022"
+gmosv58v6_disk_size = "100"
+gmosv58v6_disk_type = "pd-ssd"
+gmosv58v6_server_name = "GCPAPPPD02"
+gmosv58v6_project = "Hopital-ops-dev"
+gmosv58v6_zone = "us-east1-a"
+gmosv58v6_network = "vpc-0a1b2c3d4e5f67890"
+gmosv58v6_subnetwork = "subnet-0abc1234def567890"
+gmosv58v6_additional_disks = "40,76"
+gmosv58v6_admin_email = "tester@deloitte.com"
+gmosv58v6_admin_role = "Administrator"
+gmosv58v6_machine_type_note = ""n4-standard-4" has 4 vCPU / 16 GB RAM — does not meet your 4 vCPU / 32 GB requirement. Using higher in same family: n4-standard-8 (8 vCPU / 32 GB RAM) · Also available with exact 4 vCPU / 32 GB match in a different family: n2-highmem-4 (4 vCPU / 32 GB RAM · High Memory)"
+gmosv58v6_vpc_id = "vpc-0a1b2c3d4e5f67890"
+gmosv58v6_subnet_ids = ["subnet-0abc1234def567890"]
+gmosv58v6_user_gcp_family = "n4"
+gmosv58v6_ram_gb = "32"
+gmosv58v6_cpu_cores = "4"
