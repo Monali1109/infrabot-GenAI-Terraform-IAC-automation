@@ -1,0 +1,12 @@
+# terraform.tfvars — Cloud CDN (dev)
+region = "us-central1"
+project = "myproject-dev"
+tags = "project=internaltools,environment=dev,managed_by=terraform"
+protocol = "HTTP only"
+ports = "80"
+service_access = "GCS"
+backend = "gs://gcpdevstaticfiles"
+origin_domain = "gs://gcpdevstaticfiles"
+origin_host = "gs://gcpdevstaticfiles"
+cache_ttl = "1800 (30min)"
+min_ttl = "1800 (30min)"
