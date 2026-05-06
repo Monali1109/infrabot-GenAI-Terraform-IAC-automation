@@ -1,0 +1,13 @@
+# terraform.tfvars — Azure CDN / Front Door (prod)
+profile_name = "my-website-cdn"
+sku = "Standard_Microsoft"
+endpoint_name = "my-website-endpoint"
+origin_host = "mywebsiteassets.blob.core.windows.net"
+origin_path = "/static"
+resource_group = "rg-cdn-prod"
+location = "eastus"
+protocol = "Https"
+optimization = "GeneralWebDelivery"
+cache_ttl = "86400 (24hr)"
+tags = "Project=MyWebsite,Environment=prod,ManagedBy=Terraform"
+min_ttl = "86400 (24hr)"
