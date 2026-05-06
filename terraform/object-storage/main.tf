@@ -31,3 +31,14 @@ resource "aws_s3_bucket_public_access_block" "main" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+
+
+# ── S3 Bucket: gmottgw7t (dev) ─────────────────────────────────
+resource "aws_s3_bucket" "gmottgw7t" {
+  bucket = "${var.project_name}-gmottgw7t-dev"
+  force_destroy = false
+
+  tags = { environment = "dev", generation = "gmottgw7t", managed_by = "terraform" }
+}
+
+output "gmottgw7t_id" { value = aws_s3_bucket.gmottgw7t.id }
