@@ -31,3 +31,14 @@ resource "aws_s3_bucket_public_access_block" "main" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+
+
+# ── S3 Bucket: gmottvyce (prod) ─────────────────────────────────
+resource "aws_s3_bucket" "gmottvyce" {
+  bucket = "${var.project_name}-gmottvyce-prod"
+  force_destroy = false
+
+  tags = { environment = "prod", generation = "gmottvyce", managed_by = "terraform" }
+}
+
+output "gmottvyce_id" { value = aws_s3_bucket.gmottvyce.id }
