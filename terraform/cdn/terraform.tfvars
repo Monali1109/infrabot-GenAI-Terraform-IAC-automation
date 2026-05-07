@@ -1,0 +1,13 @@
+# terraform.tfvars — Azure CDN / Front Door (test)
+profile_name = "portal-cdn-test"
+sku = "Standard_Verizon"
+endpoint_name = "portal-test-endpoint"
+origin_host = "portalassets.blob.core.windows.net"
+origin_path = "/media"
+resource_group = "rg-cdn-test"
+location = "westeurope"
+protocol = "Https"
+cache_ttl = "14400 (4hr)"
+tags = "Project=ClientPortal,Environment=test,ManagedBy=Terraform"
+distribution_comment = "portal-cdn-test"
+min_ttl = "14400 (4hr)"
